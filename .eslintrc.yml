@@ -1,0 +1,13 @@
+parserOptions:
+    ecmaVersion: 2018
+  extends:
+    - google
+    - prettier
+  plugins:
+    - prettier
+  rules:
+    max-len: [1, 110, 4]
+    indent: ["error", "tab", {"SwitchCase": 1}]
+    prettier/prettier: error
+    camelcase: ["error", {"ignoreDestructuring": true, "properties": "never"}]
+  

@@ -1,0 +1,37 @@
+{
+  "name": "atab",
+  "version": "1.0.0",
+  "description": "New tab for chrome",
+  "scripts": {
+    "lint": "prettier --write './src**/*.js'",
+    "clean": "rm -rf ./dist/*",
+    "copy": "cpx-fixed 'src/**/*.{json,png,svg,css,html}' dist",
+    "rollup-dev": "rollup -c",
+    "rollup-prod": "rollup -c --environment prod",
+    "prod": "run-s clean rollup-prod copy",
+    "dev": "run-s clean rollup-dev copy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreagualandi/aTab.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/andreagualandi/aTab/issues"
+  },
+  "homepage": "https://github.com/andreagualandi/aTab#readme",
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
+  "devDependencies": {
+    "cpx-fixed": "^1.6.0",
+    "eslint": "^7.8.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.1",
+    "rollup": "^2.26.9",
+    "rollup-plugin-chrome-extension": "^3.3.0",
+    "rollup-plugin-terser": "^7.0.1"
+  },
+  "dependencies": {}
+}

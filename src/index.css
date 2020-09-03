@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    min-height: 100vh;
+    margin: 0px;
+    background-color: #121212;
+}
+
+.hide {
+    display: none;
+}
+
+#grid-container {
+    display: flex;
+    flex-flow: column;
+    margin: 5px;
+    width: -webkit-fill-available;
+}
+
+#loader {
+    border: 16px solid #E2E2E2;
+    border-top: 16px solid #BF89FF;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0px 0px -50px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
