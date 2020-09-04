@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "prettier --write './src**/*.js'",
     "clean": "rm -rf ./dist/*",
-    "copy": "cpx-fixed 'src/**/*.{json,png,svg,css,html}' dist",
+    "copy": "cpx-fixed 'src/**/*.{json,png,jpg,svg,css,html}' dist",
     "rollup-dev": "rollup -c",
     "rollup-prod": "rollup -c --environment prod",
     "prod": "run-s clean rollup-prod copy",
