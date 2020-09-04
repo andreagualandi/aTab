@@ -1,20 +1,3 @@
-
-
-/* 
-const rssContainer = document.getElementById('rss');
-
-
-
-
-function createRssItem(descr) {
-    const html = `<div class="rss-item">${descr}</div>`;
-
-    rssContainer.insertAdjacentHTML('afterbegin', html);
-}
-
-createRssItem('eccoci quaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa asdasdasdasdasd          adasdadads');
-createRssItem('eccoci qua');  */
-
 // --- RSS ---
 const DOMPARSER = new DOMParser().parseFromString.bind(new DOMParser())
 const feedUrl = 'https://www.oasport.it/feed/';
@@ -39,6 +22,7 @@ document.getElementById('refresh-button').onclick = function () {
     let hasBegun = true
     let url = new URL(feedUrl)
     const rssElement = document.getElementById('rss');
+    const template = document.getElementById('template-rss-item').content;
 
     /* Fetch the RSS Feed */
     fetch(feedUrl).then((res) => {
@@ -50,7 +34,7 @@ document.getElementById('refresh-button').onclick = function () {
                 heading.textContent = url.hostname
                 frag.appendChild(heading)
                 doc.querySelectorAll('item').forEach((item) => {
-                    let temp = document.importNode(document.getElementById('template-rss-item').content, true);
+                    let temp = document.importNode(template, true);
                     let i = item.querySelector.bind(item)
                     let t = temp.querySelector.bind(temp)
                     t('h2').textContent = !!i('title') ? i('title').textContent : '-'
@@ -71,47 +55,23 @@ document.getElementById('refresh-button').onclick = function () {
     }).catch((e) => console.error('Error in fetching the RSS feed', e))
 }
 
-
-
-// Event listener for clicks on links in a browser action popup.
-// Open the link in a new tab of the current window.
-function onAnchorClick(event) {
-    chrome.tabs.create({ url: event.srcElement.href });
-    return false;
-}
-
-// Given an array of URLs, build a DOM list of these URLs in the
-// browser action popup.
-function buildPopupDom(mostVisitedURLs) {
-    /* const popupDiv = document.getElementById('mostVisited_div');
-    var ol = popupDiv.appendChild(document.createElement('ol'));
- */
+function createTiles(mostVisitedURLs) {
     const tileElement = document.getElementById('tile');
-
-    for (var i = 0; i < mostVisitedURLs.length; i++) {
-        /* var li = ol.appendChild(document.createElement('li'));
-        var a = li.appendChild(document.createElement('a'));
-        a.href = mostVisitedURLs[i].url;
-        a.appendChild(document.createTextNode(mostVisitedURLs[i].title));
-        a.addEventListener('click', onAnchorClick);
- */
-        const fragTile = createTile(mostVisitedURLs[i].title, mostVisitedURLs[i].url);
-        tileElement.appendChild(fragTile);
-    }
-}
-
-function createTile(title, url) {
     const fragment = document.createDocumentFragment();
-    let template = document.importNode(document.getElementById('template-tile-item').content, true);
-
-    let t = template.querySelector.bind(template)
+    const template = document.getElementById('template-tile-item').content;
 
 
-    t('a').textContent = title;
-    t('a').href = url;
-    fragment.appendChild(template)
-    return fragment;
+    for (let i = 0; i < mostVisitedURLs.length; i++) {
+        const tile = document.importNode(template, true);
+        const t = tile.querySelector.bind(tile)
+        t('a').textContent = mostVisitedURLs[i].title;
+        t('a').href = mostVisitedURLs[i].url;
+
+        fragment.appendChild(tile)
+    }
+
+    tileElement.appendChild(fragment);
 }
 
 
-chrome.topSites.get(buildPopupDom);
+chrome.topSites.get(createTiles);
