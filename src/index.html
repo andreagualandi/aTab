@@ -7,25 +7,21 @@
 </head>
 
 <body>
-    <div id="loader"></div>
     <div class="tile-container">
-        <div class="tile">
-            <a>
-                <div>description</div>
-            </a>
-        </div>
+        <output id="tile"></output>
+        <template id="template-tile-item">
+            <div class="tile-item">
+                <a href='#'></a>
+            </div>
+        </template>
     </div>
-    <!-- <div class="rss-container">
-        <button id="refresh-button">Refresh</button>
-        <div id="rss">
-        </div>
-    </div> -->
+
 
     <div class="rss-container">
-        <h1>RSS Reader (JavaScript)</h1>
+        <h1>RSS Reader</h1>
         <button id="refresh-button">Refresh</button>
-        <output id="rss">Loading...</output>
-        <template>
+        <output id="rss">Empty</output>
+        <template id="template-rss-item">
             <div class="rss-item">
                 <h2></h2>
                 <h3></h3>
