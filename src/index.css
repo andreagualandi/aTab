@@ -7,6 +7,10 @@ body {
     justify-content: flex-start;
     /* background-color: darkslateblue; */
     background-image: url('images/back.jpg');
+
+    animation: fadeInAnimation ease 1s;
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards; 
 }
 
 .hide {
@@ -104,11 +108,11 @@ body {
     text-overflow: ellipsis;
 }
 
-.tile-item{
-    animation: fadein 1s;
-}
-
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
+@keyframes fadeInAnimation { 
+    0% { 
+        opacity: 0; 
+    } 
+    100% { 
+        opacity: 1; 
+     } 
+} 
