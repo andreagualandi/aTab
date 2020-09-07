@@ -54,38 +54,58 @@ body {
     flex-flow: wrap;
     justify-content: center;
     padding: 10px;
+    min-height: 100px;
 }
 
 .tile-item{
     border-color: gainsboro;
-    width: 160px;
-    height: 100px;
+    width: 200px;
+    height: 48px;
     display: flex;
-    justify-content: center;
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
-    text-decoration: none;
-    color: aliceblue;
-    background-color: rgba(255,255,255,0.25);
+    background-color: rgba(32,32,32,0.7);
 }
 
 .tile-item:hover {
-    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
-    outline-color: rgba(255, 255, 255, 0);
     outline-offset: 15px;
-    text-shadow: 1px 1px 2px black;
+    transform: scale(1.05);
+}
+
+.tile-item div{
+    align-items: center;
+    display: inline-flex;
+    height: 100%;
+    background: rgba(255,255,255,0.3);
+    border-radius: 5px 0px 0px 5px;
 }
 
 .tile-item a{
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    color: black;
-    font-size: 14px;
+    color: rgb(241, 239, 236);
+    font-size: 12px;
+    text-overflow: ellipsis;
+}
+
+.tile-item img{
+    float: left;
+    margin: 5px;
+}
+
+.tile-item span{
+    margin-left: 5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .tile-item{
-    animation: fadein 2s;
+    animation: fadein 1s;
 }
 
 @keyframes fadein {

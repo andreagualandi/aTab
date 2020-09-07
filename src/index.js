@@ -62,11 +62,12 @@ function createTiles(mostVisitedURLs) {
 
 
     for (let i = 0; i < mostVisitedURLs.length; i++) {
+        console.log(mostVisitedURLs);
         const tile = document.importNode(template, true);
         const t = tile.querySelector.bind(tile)
-        t('a').textContent = mostVisitedURLs[i].title;
         t('a').href = mostVisitedURLs[i].url;
-
+        t('span').textContent = mostVisitedURLs[i].title;
+        t('img').src = "chrome://favicon/size/24/" + mostVisitedURLs[i].url;
         fragment.appendChild(tile)
     }
 
