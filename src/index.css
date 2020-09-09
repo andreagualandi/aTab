@@ -13,8 +13,32 @@ body {
     animation-fill-mode: forwards; 
 }
 
-.hide {
-    display: none;
+.lower{
+    display: flex;
+    width: 100%;
+}
+
+.notes-container{
+    display: flex;
+    flex-flow: column;
+    padding: 10px;
+}
+
+.notes-container h1{
+    background: #e4e4e4;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+#notes{
+    width: 400px;
+    height: 400px;
+    resize: none;
+}
+
+#notes:focus{
+    outline: none;
 }
 
 .rss-container{

@@ -21,19 +21,29 @@
         </template>
     </div>
 
+    <div class="lower">
+        <!-- NOTES -->
+        <div class="notes-container">
+            <h1>Notes</h1>
+            <textarea id="notes" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"
+                placeholder="Write something..."></textarea>
+        </div>
 
-    <div class="rss-container">
-        <h1>RSS Reader</h1>
-        <button id="refresh-button">Refresh</button>
-        <output id="rss">Empty</output>
-        <template id="template-rss-item">
-            <div class="rss-item">
-                <h2></h2>
-                <h3></h3>
-                <a href='#'></a>
-                <p></p>
-            </div>
-        </template>
+        <!-- RSS -->
+        <div class="rss-container">
+            <h1>RSS Reader</h1>
+            <button id="refresh-button">Refresh</button>
+            <output id="rss">Empty</output>
+            <template id="template-rss-item">
+                <div class="rss-item">
+                    <h2></h2>
+                    <h3></h3>
+                    <a href='#'></a>
+                    <p></p>
+                </div>
+            </template>
+        </div>
+
     </div>
 </body>
 

@@ -1,6 +1,6 @@
 // --- RSS ---
 const DOMPARSER = new DOMParser().parseFromString.bind(new DOMParser())
-const feedUrl = 'https://www.oasport.it/feed/';
+const feedUrl = 'https://feeds.feedburner.com/skidrowgamesfeed';
 
 
 
@@ -55,6 +55,8 @@ document.getElementById('refresh-button').onclick = function () {
     }).catch((e) => console.error('Error in fetching the RSS feed', e))
 }
 
+// --- TILES: TOP SITES ---
+
 function createTiles(mostVisitedURLs) {
     const tileElement = document.getElementById('tile');
     const fragment = document.createDocumentFragment();
@@ -76,3 +78,23 @@ function createTiles(mostVisitedURLs) {
 
 
 chrome.topSites.get(createTiles);
+
+// --- NOTES ---
+
+function createNotes() {
+    const textArea = document.getElementById('notes');
+    const notes = localStorage.getItem("notes");
+
+    textArea.value = notes;
+    let timeoutId = null;
+    textArea.addEventListener("input", (e) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(function () {
+            // Runs 1 second (1000 ms) after the last change    
+            localStorage.setItem("notes", textArea.value);
+        }, 1000);
+
+    });
+}
+
+createNotes();
