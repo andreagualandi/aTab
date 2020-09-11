@@ -1,26 +1,37 @@
 // --- RSS ---
 const DOMPARSER = new DOMParser().parseFromString.bind(new DOMParser())
-const feedUrl = 'https://feeds.feedburner.com/skidrowgamesfeed';
+let feedUrl = '';
+
+function createRss() {
+    //TODO load from storage
+    const rssList = [
+        'https://feeds.feedburner.com/skidrowgamesfeed',
+    ];
+
+    rssList.forEach(url => {
+        createRssFeed(url);
+    });
+
+}
+
+function createRssFeed(url) {
+    feedUrl = url;
+    let fragment = document.createDocumentFragment()
+    const rssContainer = document.getElementById('rss-container');
+    const feedTemplate = document.getElementById('template-rss-feed').content;
+
+    const feed = document.importNode(feedTemplate, true);
+    const t = feed.querySelector.bind(feed)
+    t('h1').textContent = url;
+    t('button').addEventListener('click', createRssItem);
+    fragment.appendChild(feed)
+    rssContainer.appendChild(fragment)
+}
 
 
-
-document.getElementById('refresh-button').onclick = function () {
-    /* fetch(feedUrl).then((res) => {
-        res.text().then((xmlTxt) => {
-            var domParser = new DOMParser()
-            let doc = domParser.parseFromString(xmlTxt, 'text/xml')
-            doc.querySelectorAll('item').forEach((item) => {
-
-           
-
-                createRssItem(item.querySelector('title').textContent);
-            })
-        })
-    }) */
-
+function createRssItem() {
     let frag = document.createDocumentFragment()
     let hasBegun = true
-    let url = new URL(feedUrl)
     const rssElement = document.getElementById('rss');
     const template = document.getElementById('template-rss-item').content;
 
@@ -30,9 +41,6 @@ document.getElementById('refresh-button').onclick = function () {
             /* Parse the RSS Feed and display the content */
             try {
                 let doc = DOMPARSER(xmlTxt, "text/xml")
-                let heading = document.createElement('h1')
-                heading.textContent = url.hostname
-                frag.appendChild(heading)
                 doc.querySelectorAll('item').forEach((item) => {
                     let temp = document.importNode(template, true);
                     let i = item.querySelector.bind(item)
@@ -40,7 +48,7 @@ document.getElementById('refresh-button').onclick = function () {
                     t('h2').textContent = !!i('title') ? i('title').textContent : '-'
                     t('a').textContent = t('a').href = !!i('link') ? i('link').textContent : '#'
                     t('p').innerHTML = !!i('description') ? i('description').textContent : '-'
-                    t('h3').textContent = url.hostname
+                    t('h3').textContent = 'RANDOM TEXT'
                     frag.appendChild(temp)
                 })
             } catch (e) {
@@ -54,6 +62,21 @@ document.getElementById('refresh-button').onclick = function () {
         })
     }).catch((e) => console.error('Error in fetching the RSS feed', e))
 }
+
+/* fetch(feedUrl).then((res) => {
+        res.text().then((xmlTxt) => {
+            var domParser = new DOMParser()
+            let doc = domParser.parseFromString(xmlTxt, 'text/xml')
+            doc.querySelectorAll('item').forEach((item) => {
+
+           
+
+                createRssItem(item.querySelector('title').textContent);
+            })
+        })
+    }) */
+
+createRss();
 
 // --- TILES: TOP SITES ---
 

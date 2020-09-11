@@ -61,12 +61,20 @@ body {
     overflow: auto;
 }
 
+#rss h1{
+    background: #e4e4e4;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+}
+
 .rss-item{
     border-style: solid;
     border-width: 1px;
     padding: 5px;
-
 }
+
+
 
 .tile-container {
     /* width: 100%;
