@@ -16,6 +16,10 @@ body {
 .lower{
     display: flex;
     width: 100%;
+    flex-grow: 1;
+    overflow: hidden;
+    height: 200px;
+    padding-bottom: 40px;
 }
 
 .notes-container{
@@ -43,14 +47,21 @@ body {
 
 .rss-container{
     display: flex;
-    flex-flow: column;
     width: 30%;
     padding: 10px;
-    height: 400px;
+}
 
-    flex-grow: 1;
-    overflow-x: hidden;
-    overflow-y: auto;
+#rss-feed{
+    display: flex;
+    max-width: 400px;
+    flex-flow: column;
+}
+
+#rss-feed h1{
+    background: #e4e4e4;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
 }
 
 #rss{
@@ -59,13 +70,6 @@ body {
     border-color: gainsboro;
     flex-flow: column;
     overflow: auto;
-}
-
-#rss h1{
-    background: #e4e4e4;
-    margin: 0px;
-    display: flex;
-    justify-content: center;
 }
 
 .rss-item{
