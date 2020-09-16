@@ -121,3 +121,54 @@ function createNotes() {
 }
 
 createNotes();
+
+// --- SEARCH ---
+function search() {
+    const input = document.getElementById('search-input');
+
+
+    document.getElementById('history-button').addEventListener('click', function (e) {
+        document.getElementById('history-container').classList.add('show');
+    })
+
+    document.getElementById('btn-close').addEventListener('click', function (e) {
+        document.getElementById('history-container').classList.remove('show');
+    })
+
+    const output = document.getElementById('out-history');
+    let timeoutId = null;
+
+    const result = [];
+
+    var microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
+    var oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
+
+    input.addEventListener("input", (e) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(function () {
+            // Runs 1 second (1000 ms) after the last change    
+
+
+            chrome.history.search({
+                'text': input.value,              // Return every history item....
+                'startTime': oneWeekAgo  // that was accessed less than one week ago.
+            },
+                function (historyItems) {
+                    // For each history item, get details on all visits.
+                    historyItems.forEach(item => {
+                        const text = `${item.title} [${item.url}]`;
+                        result.push(text);
+                    });
+                    output.value = result.join('\n');
+                });
+
+
+
+
+
+        }, 300);
+
+    });
+}
+
+search();
